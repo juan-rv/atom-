@@ -1,0 +1,1313 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family:
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+  background: #f4f6f8;
+  color: #1f2937;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+.app {
+  min-height: 100vh;
+}
+
+.app-header {
+  background: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+  padding: 24px 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.app-header h1 {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.app-header p {
+  margin: 4px 0 0;
+  color: #6b7280;
+}
+
+.version {
+  font-size: 13px;
+  color: #6b7280;
+}
+
+.container {
+  width: min(1250px, calc(100% - 40px));
+  margin: 32px auto;
+}
+
+.card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.section-title h2,
+.section-header h2 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.section-description {
+  margin: 6px 0 0;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.section-header p {
+  margin: 5px 0 0;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin-top: 24px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.full-width {
+  grid-column: 1 / -1;
+}
+
+.form-group label {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.form-group input,
+.form-group select,
+.resultado-box input {
+  width: 100%;
+  min-height: 44px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  padding: 10px 12px;
+  background: #ffffff;
+  outline: none;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.resultado-box input:focus {
+  border-color: #2563eb;
+  box-shadow:
+    0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.button-primary {
+  border: none;
+  border-radius: 8px;
+  background: #2563eb;
+  color: white;
+  padding: 11px 18px;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+
+.button-primary:hover {
+  background: #1d4ed8;
+}
+
+/* ESTADO VACÍO */
+
+.empty-state {
+  border: 2px dashed #d1d5db;
+  border-radius: 10px;
+  padding: 48px 20px;
+  text-align: center;
+}
+
+.empty-icon {
+  font-size: 38px;
+}
+
+.empty-state h3 {
+  margin: 12px 0 6px;
+}
+
+.empty-state p {
+  margin: 0 0 20px;
+  color: #6b7280;
+}
+
+/* LISTADO DE MEDICIONES */
+
+.mediciones-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.medicion-item {
+  border: 1px solid #e1e5ea;
+  border-radius: 10px;
+  background: #ffffff;
+  overflow: hidden;
+}
+
+.medicion-item.abierta {
+  border-color: #cbd5e1;
+}
+
+.medicion-resumen {
+  min-height: 76px;
+  padding: 12px 16px;
+
+  display: grid;
+  grid-template-columns:
+    48px
+    minmax(180px, 1.4fr)
+    minmax(220px, 2fr)
+    130px
+    auto;
+
+  align-items: center;
+  gap: 16px;
+
+  cursor: pointer;
+}
+
+.medicion-resumen:hover {
+  background: #f8fafc;
+}
+
+.medicion-letra {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #eff6ff;
+  color: #2563eb;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-weight: 700;
+}
+
+.resumen-principal strong,
+.resumen-dato strong {
+  display: block;
+}
+
+.resumen-principal span {
+  display: block;
+  color: #6b7280;
+  font-size: 13px;
+  margin-top: 3px;
+}
+
+.resumen-dato small {
+  display: block;
+  color: #9ca3af;
+  font-size: 11px;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.resumen-dato strong {
+  font-size: 13px;
+}
+
+.resumen-acciones {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.button-edit {
+  border: none;
+  background: #eff6ff;
+  color: #2563eb;
+  padding: 8px 12px;
+  border-radius: 7px;
+  font-weight: 600;
+}
+
+.button-delete {
+  border: none;
+  background: transparent;
+  color: #dc2626;
+  font-weight: 600;
+  padding: 8px;
+}
+
+.button-delete:hover {
+  text-decoration: underline;
+}
+
+/* DETALLE */
+
+.medicion-detalle {
+  border-top: 1px solid #e5e7eb;
+  padding: 20px;
+  background: #fafbfc;
+}
+
+.medicion-detalle .form-grid {
+  margin-top: 0;
+}
+
+.resultado-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1.5fr;
+  gap: 14px;
+  margin-top: 20px;
+}
+
+.resultado-box {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 9px;
+  padding: 14px;
+}
+
+.resultado-box small {
+  display: block;
+  color: #6b7280;
+  font-size: 12px;
+  margin-bottom: 7px;
+}
+
+.resultado-box strong {
+  display: block;
+  font-size: 14px;
+}
+
+.help-text {
+  display: block;
+  margin-top: 6px;
+  color: #9ca3af;
+  font-size: 11px;
+}
+
+/* MEDICIONES AUTOMÁTICAS */
+
+.mediciones-automaticas {
+  margin-top: 22px;
+  padding: 18px;
+  border-radius: 10px;
+  background: #f8fafc;
+  border: 1px solid #e5e7eb;
+}
+
+.mediciones-automaticas h3 {
+  margin: 0;
+  font-size: 15px;
+}
+
+.mediciones-automaticas p {
+  margin: 5px 0 16px;
+  color: #6b7280;
+  font-size: 13px;
+}
+
+.cinco-medidas {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+}
+
+.lectura {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 12px;
+  text-align: center;
+}
+
+.lectura span {
+  display: block;
+  color: #6b7280;
+  font-size: 12px;
+}
+
+.lectura strong {
+  display: block;
+  margin-top: 5px;
+  font-size: 17px;
+}
+
+/* CÁLCULOS */
+
+.calculos {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.calculos > div {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 14px;
+}
+
+.calculos small {
+  display: block;
+  color: #6b7280;
+  font-size: 12px;
+}
+
+.calculos strong {
+  display: block;
+  margin-top: 4px;
+  font-size: 18px;
+}
+
+/* INSTRUMENTOS */
+
+.instrumentos-preview {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 18px;
+}
+
+.instrumento-tag {
+  padding: 8px 12px;
+  border-radius: 20px;
+  background: #eff6ff;
+  color: #1d4ed8;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* BOTÓN EXCEL */
+
+.final-section {
+  text-align: center;
+  padding: 10px 0 50px;
+}
+
+.button-excel {
+  border: none;
+  border-radius: 10px;
+  padding: 15px 28px;
+
+  background: #15803d;
+  color: #ffffff;
+
+  font-size: 16px;
+  font-weight: 700;
+
+  box-shadow:
+    0 4px 12px rgba(21, 128, 61, 0.2);
+
+  transition:
+    background 0.2s,
+    transform 0.2s;
+}
+
+.button-excel:hover:not(:disabled) {
+  background: #166534;
+  transform: translateY(-1px);
+}
+
+.button-excel:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.final-section p {
+  color: #6b7280;
+  font-size: 13px;
+  margin-top: 10px;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 950px) {
+  .medicion-resumen {
+    grid-template-columns:
+      48px
+      minmax(150px, 1fr)
+      minmax(150px, 1fr)
+      auto;
+  }
+
+  .resumen-dato {
+    display: none;
+  }
+
+  .resultado-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 700px) {
+  .app-header {
+    padding: 20px;
+  }
+
+  .app-header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .container {
+    width: calc(100% - 24px);
+    margin: 20px auto;
+  }
+
+  .section-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .full-width {
+    grid-column: auto;
+  }
+
+  .medicion-resumen {
+    grid-template-columns: 40px 1fr auto;
+    gap: 10px;
+  }
+
+  .resumen-acciones {
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .cinco-medidas {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .calculos {
+    grid-template-columns: 1fr;
+  }
+}
+
+.agregar-medida-final {
+  display: flex;
+  justify-content: center;
+  margin-top: 24px;
+  padding-top: 8px;
+}
+
+.nueva-metrologia-container {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.button-nueva-metrologia {
+  border: none;
+  border-radius: 8px;
+  padding: 12px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.button-nueva-metrologia:hover {
+  opacity: 0.85;
+}
+
+.nueva-metrologia-container p {
+  margin-top: 8px;
+  font-size: 13px;
+}
+
+/* =====================================================
+   FORMATO 3.1
+   ESTILOS GENERALES
+===================================================== */
+
+.formato31-page {
+  min-height: 100vh;
+  padding: 30px 20px 50px;
+  background: #f4f6f8;
+  box-sizing: border-box;
+}
+
+
+/* =====================================================
+   ENCABEZADO
+===================================================== */
+
+.formato31-header {
+  width: min(1200px, 100%);
+  margin: 0 auto 24px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 20px;
+
+  padding: 24px 28px;
+
+  background: #ffffff;
+
+  border: 1px solid #d9dee5;
+  border-radius: 12px;
+
+  box-shadow:
+    0 4px 14px rgba(0, 0, 0, 0.06);
+
+  box-sizing: border-box;
+}
+
+
+.formato31-header h1 {
+  margin: 0;
+
+  font-size: 28px;
+  font-weight: 800;
+
+  letter-spacing: 0.5px;
+}
+
+
+.formato31-header p {
+  margin: 6px 0 0;
+
+  color: #667085;
+
+  font-size: 14px;
+}
+
+
+.formato31-version {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 8px 14px;
+
+  background: #eef2f6;
+
+  border: 1px solid #d4dae1;
+  border-radius: 8px;
+
+  font-size: 13px;
+  font-weight: 700;
+
+  white-space: nowrap;
+}
+
+
+/* =====================================================
+   CONTENEDOR PRINCIPAL
+===================================================== */
+
+.formato31-container {
+  width: min(1200px, 100%);
+  margin: 0 auto;
+}
+
+
+/* =====================================================
+   SECCIONES
+===================================================== */
+
+.formato31-section {
+  margin-bottom: 22px;
+
+  padding: 24px;
+
+  background: #ffffff;
+
+  border: 1px solid #d9dee5;
+  border-radius: 12px;
+
+  box-shadow:
+    0 3px 10px rgba(0, 0, 0, 0.04);
+
+  box-sizing: border-box;
+}
+
+
+.formato31-section-title {
+  margin: -24px -24px 22px;
+
+  padding: 14px 20px;
+
+  background: #eef2f6;
+
+  border-bottom: 1px solid #d9dee5;
+  border-radius: 12px 12px 0 0;
+
+  font-size: 15px;
+  font-weight: 800;
+
+  letter-spacing: 0.4px;
+}
+
+
+/* =====================================================
+   GRID DEL FORMULARIO
+===================================================== */
+
+.formato31-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  gap: 18px 20px;
+}
+
+
+/* =====================================================
+   CAMPOS
+===================================================== */
+
+.formato31-field {
+  display: flex;
+
+  flex-direction: column;
+
+  min-width: 0;
+}
+
+
+.formato31-field-full {
+  grid-column: 1 / -1;
+}
+
+
+.formato31-field label {
+  margin-bottom: 7px;
+
+  font-size: 13px;
+  font-weight: 700;
+
+  color: #344054;
+}
+
+
+.formato31-field input,
+.formato31-field select,
+.formato31-field textarea {
+  width: 100%;
+
+  padding: 10px 12px;
+
+  box-sizing: border-box;
+
+  border: 1px solid #cbd2da;
+  border-radius: 7px;
+
+  background: #ffffff;
+
+  color: #1d2939;
+
+  font-family: inherit;
+  font-size: 14px;
+
+  outline: none;
+
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease,
+    background 0.15s ease;
+}
+
+
+.formato31-field textarea {
+  min-height: 90px;
+
+  resize: vertical;
+}
+
+
+.formato31-field input:focus,
+.formato31-field select:focus,
+.formato31-field textarea:focus {
+  border-color: #667085;
+
+  box-shadow:
+    0 0 0 3px rgba(102, 112, 133, 0.12);
+}
+
+
+.formato31-field input:read-only {
+  background: #f5f7f9;
+
+  color: #475467;
+
+  cursor: default;
+}
+
+
+/* =====================================================
+   TEXTO DE AYUDA
+===================================================== */
+
+.formato31-field small {
+  margin-top: 6px;
+
+  color: #667085;
+
+  font-size: 12px;
+
+  line-height: 1.45;
+}
+
+
+/* =====================================================
+   INFORMACIÓN DEL MATERIAL / PROVEEDOR
+===================================================== */
+
+.formato31-material-info {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  align-items: center;
+
+  gap: 10px 18px;
+
+  padding: 13px 15px;
+
+  background: #f8fafc;
+
+  border: 1px solid #d9e0e7;
+  border-radius: 8px;
+
+  color: #344054;
+
+  font-size: 13px;
+}
+
+
+.formato31-material-info strong {
+  color: #1d2939;
+}
+
+
+/* =====================================================
+   MATERIAL SELECCIONADO
+===================================================== */
+
+.formato31-material-selected {
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  margin-bottom: 16px;
+
+  padding: 11px 14px;
+
+  background: #f8fafc;
+
+  border: 1px solid #d9e0e7;
+  border-radius: 8px;
+
+  font-size: 13px;
+}
+
+
+.formato31-material-selected strong {
+  color: #344054;
+}
+
+
+/* =====================================================
+   TABLAS
+===================================================== */
+
+.formato31-table-container {
+  width: 100%;
+
+  overflow-x: auto;
+
+  border: 1px solid #d9dee5;
+
+  border-radius: 8px;
+}
+
+
+.formato31-table {
+  width: 100%;
+
+  border-collapse: collapse;
+
+  min-width: 560px;
+
+  background: #ffffff;
+}
+
+
+.formato31-table th,
+.formato31-table td {
+  padding: 11px 13px;
+
+  border-bottom: 1px solid #e4e7ec;
+
+  text-align: left;
+
+  font-size: 13px;
+}
+
+
+.formato31-table th {
+  background: #f2f4f7;
+
+  color: #344054;
+
+  font-weight: 800;
+
+  white-space: nowrap;
+}
+
+
+.formato31-table td {
+  color: #475467;
+}
+
+
+.formato31-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+
+.formato31-table tbody tr:hover {
+  background: #f9fafb;
+}
+
+
+/* =====================================================
+   NOTAS / PLACEHOLDERS
+===================================================== */
+
+.formato31-placeholder {
+  margin: 0;
+
+  color: #667085;
+
+  font-size: 14px;
+
+  line-height: 1.5;
+}
+
+
+.formato31-reference-note {
+  margin: 14px 0 0;
+
+  color: #667085;
+
+  font-size: 12px;
+}
+
+
+/* =====================================================
+   BOTÓN SECUNDARIO
+===================================================== */
+
+.button-secondary {
+  align-self: flex-start;
+
+  margin-top: 8px;
+
+  padding: 8px 14px;
+
+  border: 1px solid #cbd2da;
+  border-radius: 7px;
+
+  background: #ffffff;
+
+  color: #344054;
+
+  font-family: inherit;
+
+  font-size: 13px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease;
+}
+
+
+.button-secondary:hover {
+  background: #f2f4f7;
+
+  border-color: #98a2b3;
+}
+
+
+/* =====================================================
+   BOTÓN PRINCIPAL
+===================================================== */
+
+.button-primary {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+
+  margin-top: 18px;
+
+  padding: 13px 18px;
+
+  border: none;
+  border-radius: 8px;
+
+  background: #1d2939;
+
+  color: #ffffff;
+
+  font-family: inherit;
+
+  font-size: 14px;
+  font-weight: 800;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.1s ease,
+    background 0.15s ease,
+    opacity 0.15s ease;
+}
+
+
+.button-primary:hover {
+  background: #344054;
+}
+
+
+.button-primary:active {
+  transform: translateY(1px);
+}
+
+
+/* =====================================================
+   VALIDACIÓN / ERROR
+===================================================== */
+
+.formato31-validation-error {
+  margin-bottom: 22px;
+
+  padding: 18px 20px;
+
+  background: #fff7ed;
+
+  border: 1px solid #fed7aa;
+  border-radius: 10px;
+
+  color: #9a3412;
+
+  box-sizing: border-box;
+}
+
+
+.formato31-validation-error .formato31-section-title {
+  margin: -18px -20px 15px;
+
+  background: #ffedd5;
+
+  border-bottom-color: #fed7aa;
+
+  color: #9a3412;
+}
+
+
+.formato31-validation-error p {
+  margin: 7px 0;
+
+  font-size: 14px;
+
+  line-height: 1.5;
+}
+
+
+.formato31-validation-error ul {
+  margin: 10px 0 0;
+
+  padding-left: 22px;
+}
+
+
+.formato31-validation-error li {
+  margin-bottom: 5px;
+
+  font-size: 13px;
+}
+
+
+/* =====================================================
+   INPUT CON ERROR
+===================================================== */
+
+.input-error {
+  border-color: #dc2626 !important;
+
+  background: #fffafa !important;
+
+  box-shadow:
+    0 0 0 3px rgba(220, 38, 38, 0.08);
+}
+
+
+.formato31-error {
+  display: block;
+
+  margin-top: 6px;
+
+  color: #b42318;
+
+  font-size: 12px;
+
+  font-weight: 600;
+
+  line-height: 1.4;
+}
+
+
+/* =====================================================
+   ESTADO CORRECTO
+===================================================== */
+
+.formato31-success {
+  padding: 16px 18px;
+
+  background: #f0fdf4;
+
+  border: 1px solid #bbf7d0;
+  border-radius: 9px;
+
+  color: #166534;
+
+  box-sizing: border-box;
+}
+
+
+.formato31-success strong {
+  font-size: 14px;
+}
+
+
+.formato31-success p {
+  margin: 6px 0 0;
+
+  font-size: 13px;
+
+  line-height: 1.45;
+}
+
+
+/* =====================================================
+   SECCIÓN FINAL
+===================================================== */
+
+.formato31-final-section {
+  margin-top: 24px;
+
+  padding: 24px;
+
+  background: #ffffff;
+
+  border: 1px solid #d9dee5;
+  border-radius: 12px;
+
+  box-shadow:
+    0 3px 10px rgba(0, 0, 0, 0.04);
+
+  box-sizing: border-box;
+}
+
+
+.formato31-final-section > div {
+  margin-bottom: 0;
+}
+
+
+.formato31-final-section > p {
+  margin: 10px 0 0;
+
+  color: #667085;
+
+  font-size: 13px;
+}
+
+
+/* =====================================================
+   RESPONSIVE - TABLET
+===================================================== */
+
+@media (
+  max-width: 800px
+) {
+
+  .formato31-page {
+    padding: 20px 14px 40px;
+  }
+
+
+  .formato31-header {
+    padding: 20px;
+
+    align-items: flex-start;
+
+    flex-direction: column;
+  }
+
+
+  .formato31-header h1 {
+    font-size: 24px;
+  }
+
+
+  .formato31-section {
+    padding: 20px;
+  }
+
+
+  .formato31-section-title {
+    margin: -20px -20px 18px;
+
+    padding: 13px 16px;
+  }
+
+
+  .formato31-grid {
+    grid-template-columns: 1fr;
+  }
+
+
+  .formato31-field-full {
+    grid-column: auto;
+  }
+
+}
+
+
+/* =====================================================
+   RESPONSIVE - MÓVIL
+===================================================== */
+
+@media (
+  max-width: 500px
+) {
+
+  .formato31-page {
+    padding: 12px 10px 30px;
+  }
+
+
+  .formato31-header {
+    margin-bottom: 14px;
+
+    padding: 17px;
+
+    border-radius: 10px;
+  }
+
+
+  .formato31-header h1 {
+    font-size: 21px;
+  }
+
+
+  .formato31-header p {
+    font-size: 13px;
+  }
+
+
+  .formato31-version {
+    font-size: 11px;
+
+    padding: 6px 10px;
+  }
+
+
+  .formato31-section,
+  .formato31-final-section {
+    padding: 16px;
+
+    margin-bottom: 14px;
+
+    border-radius: 10px;
+  }
+
+
+  .formato31-section-title {
+    margin: -16px -16px 16px;
+
+    padding: 12px 14px;
+
+    font-size: 13px;
+  }
+
+
+  .formato31-field input,
+  .formato31-field select,
+  .formato31-field textarea {
+    font-size: 16px;
+  }
+
+
+  .formato31-table {
+    min-width: 500px;
+  }
+
+
+  .formato31-material-info {
+    align-items: flex-start;
+
+    flex-direction: column;
+
+    gap: 6px;
+  }
+
+}
