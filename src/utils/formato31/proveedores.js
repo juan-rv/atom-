@@ -56,6 +56,11 @@ export const PROVEEDORES = [
     nombre: "UNIVERSAL DE CAUCHOS HURTADO SA",
     nit: "830085540",
   },
+  {
+    id: "inversionesIndustrialesMetalurgicas",
+    nombre: "INVERSIONES INDUSTRIALES Y METALURGICAS SAS",
+    nit: "6013704410",
+  },
 ];
 
 // =====================================================
